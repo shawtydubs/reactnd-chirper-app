@@ -6,12 +6,12 @@ import {setAuthedUser} from './authedUser';
 const AUTHED_ID = 'shawtydubs';
 
 export function handleInitialData () {
-    return (dispath) => {
+    return (dispatch) => {
         return getInitialData()
-            .then({users, tweets} => {
+            .then(({users, tweets}) => {
                 dispatch(receiveTweets(tweets));
                 dispatch(receiveUsers(users));
-                dipatch(setAuthedUser(AUTHED_ID));
+                dispatch(setAuthedUser(AUTHED_ID));
             })
     };
 };
