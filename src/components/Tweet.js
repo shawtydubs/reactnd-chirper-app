@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {formatDate, formatTweet} from '../utils/helpers';
-import TiArrowBackOutline from 'react-icons/lib/ti/arrow-back-outline'
-import TiHeartOutline from 'react-icons/lib/ti/heart-outline'
-import TiHeartFullOutline from 'react-icons/lib/ti/heart-full-outline'
+import TiArrowBackOutline from 'react-icons/lib/ti/arrow-back-outline';
+import TiHeartOutline from 'react-icons/lib/ti/heart-outline';
+import TiHeartFullOutline from 'react-icons/lib/ti/heart-full-outline';
+import {handleToggleTweet} from '../actions/tweets';
 
 class Tweet extends Component {
     toParent = (event, id) => {
@@ -15,7 +16,13 @@ class Tweet extends Component {
     handleLike = (event) => {
         event.preventDefault();
 
-        // TODO: handle liking a tweet
+        const {dispatch, tweet, authedUser} = this.props;
+
+        dispatch(handleToggleTweet({
+            id: tweet.id,
+            hasLiked: tweet.hasLiked,
+            authedUser,
+        }));
     };
 
     render() {
