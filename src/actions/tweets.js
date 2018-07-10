@@ -26,7 +26,7 @@ export function handleAddTweet(text, replyingTo) {
         dispatch(showLoading());
 
         return saveTweet({text, author: authedUser, replyingTo})
-            .then(tweet => dispatch(addTweet(dispatch)))
+            .then(tweet => dispatch(addTweet(tweet)))
             .then(() => hideLoading())
 
     }
